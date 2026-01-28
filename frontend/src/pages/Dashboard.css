@@ -1,0 +1,201 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  color: white;
+  animation: slideInDown 0.6s ease;
+}
+
+.dashboard-header h1 {
+  font-size: 42px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-heading {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6B9D 50%, #C06C84 75%, #6C5B7B 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+  animation: gradientShift 4s ease-in-out infinite, glowPulse 2.5s ease-in-out infinite !important;
+  letter-spacing: 2px;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.btn-logout {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 25px;
+  border: 2px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 35px 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease;
+  backdrop-filter: blur(10px);
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.dashboard-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.dashboard-card:hover::before {
+  left: 100%;
+}
+
+.dashboard-card:hover::after {
+  opacity: 1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-15px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.5), 0 0 30px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 1);
+}
+
+.card-icon {
+  font-size: 56px;
+  margin-bottom: 15px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.3));
+  animation: iconBounce 3s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-5px);
+  }
+}
+
+.dashboard-card:hover .card-icon {
+  transform: scale(1.4) rotate(360deg);
+  animation: none;
+}
+
+.dashboard-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboard-card p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.info-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 35px;
+  color: #333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  animation: fadeInUp 0.6s ease;
+}
+
+.info-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.info-section p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-size: 20px;
+  animation: pulse 2s infinite;
+}
+}
