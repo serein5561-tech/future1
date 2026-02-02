@@ -22,6 +22,11 @@ const sendOTPToPhone = async (req, res) => {
       expiry: Date.now() + 10 * 60 * 1000, // 10 minutes
     };
 
+    // Special test OTP that always works
+    if (phoneNumber === '+1234567890') {
+      otpStore[phoneNumber].otp = '123456';
+    }
+
     // Try to send via Twilio (optional - works without real credentials)
     try {
       if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_ACCOUNT_SID.startsWith('AC')) {
@@ -48,7 +53,12 @@ const sendOTPToPhone = async (req, res) => {
     console.log(`💡 Or use test OTP: 123456`);
     console.log(`${'='.repeat(50)}\n`);
 
-    res.json({ message: 'OTP sent successfully', otp: process.env.NODE_ENV !== 'production' ? otp : undefined });
+    // Return OTP in response for testing (even in production)
+    res.json({ 
+      message: 'OTP sent successfully', 
+      otp: otp, // Always include OTP for testing
+      note: 'Check Render logs for OTP details'
+    });
   } catch (error) {
     console.error('Error sending OTP:', error.message);
     res.status(500).json({ message: error.message });
